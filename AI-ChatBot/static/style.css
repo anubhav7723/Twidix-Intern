@@ -1,0 +1,125 @@
+/* Reset some defaults */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #1f1f2e;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Chat container */
+.chat-wrapper {
+  width: 90%;
+  max-width: 500px;
+  background: #2c2c3c;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Header */
+.chat-header {
+  background: #3f3f5a;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border-bottom: 1px solid #555;
+}
+
+/* Chat body */
+.chat-body {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+/* Scrollbar styling */
+.chat-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chat-body::-webkit-scrollbar-thumb {
+  background: #666;
+  border-radius: 4px;
+}
+
+/* Message styles */
+.bot-message, .user-message {
+  padding: 0.8rem 1rem;
+  border-radius: 18px;
+  max-width: 80%;
+  word-wrap: break-word;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.bot-message {
+  background-color: #404060;
+  align-self: flex-start;
+}
+
+.user-message {
+  background-color: #4caf50;
+  color: white;
+  align-self: flex-end;
+}
+
+/* Footer */
+.chat-footer {
+  display: flex;
+  padding: 1rem;
+  border-top: 1px solid #555;
+  background: #2c2c3c;
+}
+
+.chat-footer input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 20px;
+  margin-right: 0.5rem;
+  font-size: 1rem;
+  outline: none;
+  background: #444;
+  color: #fff;
+}
+
+.chat-footer button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.chat-footer button:hover {
+  background-color: #45a049;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

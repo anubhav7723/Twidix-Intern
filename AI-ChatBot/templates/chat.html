@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modern Chatbot UI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="chat-wrapper">
+    <div class="chat-header">
+      🤖 <span>SmartBot Assistant</span>
+    </div>
+    
+    <div class="chat-body" id="chat-body">
+      <div class="bot-message">Hi there! How can I assist you today?</div>
+    </div>
+    
+    <div class="chat-footer">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">➤</button>
+    </div>
+  </div>
+
+<script>
+  function sendMessage() {
+    const input = document.getElementById("user-input");
+    const message = input.value.trim();
+    if (message === "") return;
+
+    const chatBody = document.getElementById("chat-body");
+
+    const userMessage = document.createElement("div");
+    userMessage.className = "user-message";
+    userMessage.textContent = message;
+    chatBody.appendChild(userMessage);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    
+    const loadingMessage = document.createElement("div");
+    loadingMessage.className = "bot-message loading";
+    loadingMessage.textContent = "🤖 SmartBot is typing...";
+    chatBody.appendChild(loadingMessage);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    fetch("/get", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "msg=" + encodeURIComponent(message),
+    })
+    .then(response => response.text())
+    .then(data => {
+      // Remove loading message
+      chatBody.removeChild(loadingMessage);
+
+      // Add actual bot response
+      const botMessage = document.createElement("div");
+      botMessage.className = "bot-message";
+      botMessage.textContent = "🤖 " + data;
+      chatBody.appendChild(botMessage);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    })
+    .catch(error => {
+      chatBody.removeChild(loadingMessage);
+      const errorMessage = document.createElement("div");
+      errorMessage.className = "bot-message";
+      errorMessage.textContent = "❌ Error: " + error.message;
+      chatBody.appendChild(errorMessage);
+    });
+
+    input.value = "";
+  }
+</script>
+
+
+</body>
+</html>
