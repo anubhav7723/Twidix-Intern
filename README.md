@@ -1,4 +1,4 @@
-# Twidix-Intern# 🌟 Twidix Summer Internship Program 2026
+# Twidix Summer Internship Program 2026
 
 This repository contains the projects and assignments completed during the **Twidix Summer Internship Program 2026**, covering AI, automation, analytics, and business-oriented solutions. Each task was designed to provide hands-on experience with real-world technologies and problem-solving.
 
